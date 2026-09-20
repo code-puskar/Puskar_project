@@ -104,9 +104,9 @@ export function FeatureCard({ feature }: FeatureCardProps) {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 mt-4 text-xs font-medium">
+            <div className="flex flex-wrap items-center gap-y-2 gap-x-4 mt-4 text-xs font-medium">
               <span className={cn(
-                "px-2.5 py-1 rounded-full border",
+                "px-2.5 py-1 rounded-full border whitespace-nowrap flex-shrink-0",
                 feature.status === 'under_review' && "bg-secondary text-secondary-foreground border-transparent",
                 feature.status === 'planned' && "bg-blue-500/10 text-blue-500 border-blue-500/20",
                 feature.status === 'in_progress' && "bg-amber-500/10 text-amber-500 border-amber-500/20",
@@ -115,15 +115,15 @@ export function FeatureCard({ feature }: FeatureCardProps) {
                 {feature.status.replace('_', ' ').toUpperCase()}
               </span>
 
-              <span className="bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-transparent">
+              <span className="bg-secondary text-secondary-foreground px-2.5 py-1 rounded-full border border-transparent whitespace-nowrap flex-shrink-0">
                 {feature.category}
               </span>
 
-              <div className="flex items-center gap-1.5 text-muted-foreground ml-auto">
+              <div className="flex items-center gap-1.5 text-muted-foreground ml-auto whitespace-nowrap flex-shrink-0">
                 <MessageSquare className="w-4 h-4" />
                 <span>{feature.commentCount}</span>
               </div>
-              <div className="flex items-center gap-1.5 text-muted-foreground">
+              <div className="flex items-center gap-1.5 text-muted-foreground whitespace-nowrap flex-shrink-0">
                 <Clock className="w-4 h-4" />
                 <span>{new Date(feature.createdAt).toLocaleDateString()}</span>
               </div>
