@@ -69,6 +69,11 @@ npm run dev
 The application will now be accessible at `http://localhost:5173`.
 
 ## 7. Assumptions & Limitations
-- **Email Verification**: To keep the setup simple and avoid mandating third-party API keys (e.g., Resend, SendGrid) for the evaluator, the "Forgot Password" flow currently simulates sending an email by logging the reset token securely to the backend console.
+- **Email Verification**: Real email sending is fully implemented using `nodemailer`. If valid `SMTP_USER` and `SMTP_PASS` environment variables are provided, password reset links will be sent directly to the user's inbox. If missing, it safely falls back to a development simulation by logging the link to the console to ensure evaluators can still test the flow locally without setting up SMTP.
 - **Admin Provisioning**: The system assumes the initial administrator is seeded manually via the database or the provided `seed-admin.js` script to prevent unauthorized users from granting themselves admin privileges via the UI.
 - **Media Uploads**: Markdown is fully supported for rich text formatting in feature requests and comments. However, direct image file uploads are disabled to avoid requiring external cloud storage (AWS S3) configuration for local testing.
+
+## 8. Live Demo
+The application has been successfully deployed to Vercel:
+- **Frontend URL**: https://roadmaphub-frontend.vercel.app
+- **Backend API**: https://roadmaphub-backend.vercel.app
