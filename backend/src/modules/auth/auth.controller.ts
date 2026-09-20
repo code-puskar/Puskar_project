@@ -6,6 +6,7 @@ import { sendSuccess, sendError } from '../../utils/apiResponse';
 import { setTokenCookies, clearTokenCookies, verifyRefreshToken } from '../../utils/jwt';
 import { comparePassword, hashToken, compareToken, hashPassword } from '../../utils/password';
 import { generateRandomToken } from '../../utils/token';
+import { sendPasswordResetEmail } from '../../utils/email';
 import { User } from '../../models/User';
 
 export const signup = async (req: Request, res: Response): Promise<void> => {
@@ -217,8 +218,8 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
     user.passwordResetExpiresAt = expires;
     await user.save();
 
-    console.log(`\n\n[DEV EMAIL SIMULATION] Password Reset Link for ${user.email}:`);
-    console.log(`${env.CLIENT_URL}/reset-password?token=${resetToken}&id=${user._id}\n\n`);
+    const resetLink = `${env.CLIENT_URL}/reset-password?token=${resetToken}&id=${user._id}`;
+    await sendPasswordResetEmail(user.email, resetLink);
 
     sendSuccess(res, { message: 'If an account exists with this email, a reset link has been logged.' });
   } catch (err: any) {

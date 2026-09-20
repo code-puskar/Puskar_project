@@ -15,4 +15,6 @@ export const env = {
   COOKIE_DOMAIN: process.env.COOKIE_DOMAIN || 'localhost',
   COOKIE_SECURE: process.env.COOKIE_SECURE === 'true',
   COOKIE_SAME_SITE: (process.env.COOKIE_SAME_SITE as 'lax' | 'none' | 'strict') || 'lax',
+  SMTP_USER: process.env.SMTP_USER || '',
+  SMTP_PASS: process.env.SMTP_PASS || '',
 };
