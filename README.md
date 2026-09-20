@@ -34,7 +34,7 @@ cp .env.example .env
 Ensure the following variables are set in your `backend/.env` file:
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/roadmaphub
+MONGODB_URI=mongodb://localhost:27017/roadmaphub(its not the real one)
 ACCESS_TOKEN_SECRET=your_access_token_secret_here
 REFRESH_TOKEN_SECRET=your_refresh_token_secret_here
 FRONTEND_URL=http://localhost:5173
