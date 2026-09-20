@@ -10,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuGroup
-} from '../ui/dropdown-menu';
+} from '../ui/menu';
 
 export function Navbar() {
   const { user, isLoading, logout } = useAuth();
