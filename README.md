@@ -34,10 +34,14 @@ cp .env.example .env
 Ensure the following variables are set in your `backend/.env` file:
 ```env
 PORT=5000
-MONGODB_URI=mongodb://localhost:27017/roadmaphub(its not the real one)
-ACCESS_TOKEN_SECRET=your_access_token_secret_here
-REFRESH_TOKEN_SECRET=your_refresh_token_secret_here
-FRONTEND_URL=http://localhost:5173
+MONGODB_URI=mongodb://localhost:27017/roadmaphub # (its not the real one)
+CLIENT_URL=http://localhost:5173
+JWT_ACCESS_SECRET=your_access_token_secret_here
+JWT_REFRESH_SECRET=your_refresh_token_secret_here
+
+# Optional: For real email verification
+SMTP_USER=your_gmail_address
+SMTP_PASS=your_gmail_app_password
 ```
 
 ## 5. Database Setup
