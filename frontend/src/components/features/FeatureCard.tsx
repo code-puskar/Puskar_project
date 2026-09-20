@@ -119,7 +119,7 @@ export function FeatureCard({ feature }: FeatureCardProps) {
                 {feature.category}
               </span>
 
-              <div className="flex items-center gap-1.5 text-muted-foreground ml-auto whitespace-nowrap flex-shrink-0">
+              <div className="flex items-center gap-1.5 text-muted-foreground whitespace-nowrap flex-shrink-0">
                 <MessageSquare className="w-4 h-4" />
                 <span>{feature.commentCount}</span>
               </div>
