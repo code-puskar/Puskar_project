@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { env } from '../../config/env';
 import { AuthService } from './auth.service';
 import { signupSchema, loginSchema, forgotPasswordSchema, resetPasswordSchema } from './auth.validation';
 import { sendSuccess, sendError } from '../../utils/apiResponse';
@@ -25,7 +26,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
 
     // Simulate Email sending (MVP rule)
     console.log(`\n\n[DEV EMAIL SIMULATION] Verification Link for ${user.email}:`);
-    console.log(`http://localhost:5173/verify-email?token=${verificationToken}&id=${user._id}\n\n`);
+    console.log(`${env.CLIENT_URL}/verify-email?token=${verificationToken}&id=${user._id}\n\n`);
 
     sendSuccess(res, {
       message: 'User registered successfully. Check console for verification link (simulation).',
@@ -217,7 +218,7 @@ export const forgotPassword = async (req: Request, res: Response): Promise<void>
     await user.save();
 
     console.log(`\n\n[DEV EMAIL SIMULATION] Password Reset Link for ${user.email}:`);
-    console.log(`http://localhost:5173/reset-password?token=${resetToken}&id=${user._id}\n\n`);
+    console.log(`${env.CLIENT_URL}/reset-password?token=${resetToken}&id=${user._id}\n\n`);
 
     sendSuccess(res, { message: 'If an account exists with this email, a reset link has been logged.' });
   } catch (err: any) {
