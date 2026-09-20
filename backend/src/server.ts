@@ -4,19 +4,20 @@ import { connectDB } from './config/db';
 
 let isConnected = false;
 
-// Middleware to ensure DB connection for Vercel serverless functions
-app.use(async (req, res, next) => {
+if (process.env.NODE_ENV !== 'production') {
+  // Local development
+  connectDB().then(() => {
+    app.listen(env.PORT, () => {
+      console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
+    });
+  });
+}
+
+// Vercel Serverless Function wrapper
+export default async function(req: any, res: any) {
   if (!isConnected) {
     await connectDB();
     isConnected = true;
   }
-  next();
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(env.PORT, () => {
-    console.log(`Server running in ${env.NODE_ENV} mode on port ${env.PORT}`);
-  });
+  return app(req, res);
 }
-
-export default app;
